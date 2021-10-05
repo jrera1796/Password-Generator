@@ -1,58 +1,66 @@
 // Assignment code here
-var charAlpha = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz']
-var charNumeric = ['1234567890']
-var charSpecial = ['!@#$%^&*()_+']
+var charAlphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var charAlphaLow = "abcdefghijklmnopqrstuvwxyz"
+var charNumeric = "1234567890"
+var charSpecial = "!@#$%^&*()"
+// var passRandom = charAlphaLow + charAlphaUpp + charNumeric + charSpecial
 
-var passRandom = charAlpha + charNumeric + charSpecial
 
 
 //Password user input questions
-var passGen = function(){
+var generatePassword = function(){
   
-  var userInput = window.prompt('How long would you like your passowrd.');
+  var passLength = window.prompt('How long would you like your password?');
   
 
-  userInput = parseInt(userInput);
+  passLength = parseInt(passLength);
  
 
-  //If User input is less than or equal to 0
-  //If user input is less than or = to 7
+  //If passLength is less than 8
+  //If passLength is greater than 128
 
-  while (userInput <= 0 || userInput <= 7){
-    window.alert('It is recommended to use a password that is more than 8 characters')
-    
-    passGen();
+  while (passLength < 8 || passLength > 128){
+    passLength = window.prompt('It is recommended to use a password that is more than 8 characters Please reenter a value between 8 - 128')
+   
+    // generatePassword();
 }
+//I want the users password length stored in a variable, passLength
 
-  
-  //If User input is greater than or equal to 8
-  //If user input is less than or 16 
-  if (userInput >= 8 || userInput <= 16){
-  
     var userYesNo = window.prompt("Would you like to numbers in your password? Type 1 for yes 0 for no");
     userYesNo = parseInt(userYesNo);
 
-    if (userYesNo == 1)
+    var passRandom = ""
+
+    if (userYesNo == 1){
+      passRandom += charNumeric
+    // getRandomChars(passRandom, passLength);
     
-    // console.log(userYesNo);
-    
-
-    console.log(passRandom + " Here you go");
   }
+userYesNo = window.prompt("Do you want upper case letters? 1 for Yes 0 for No")
 
-  if (userYesNo == 0){
-    console.log(passRandom + " You can take the numbers out yourself")
-  }
+if (userYesNo == 1){
+  passRandom += charAlphaUpp
+}
 
-  else{
-    // console.log('Yo ish is broken Jose');
-    passGen();
-  } 
-  
+userYesNo = window.prompt("Do you want lower case letters? 1 for Yes 0 for No")
+
+if (userYesNo == 1){
+  passRandom += charAlphaLow
+}
+userYesNo = window.prompt("Do you want special letters? 1 for Yes 0 for No")
+
+if (userYesNo == 1){
+  passRandom += charSpecial
+}
+
+  return getRandomChars(passRandom, passLength)
 };
+
+//Else 0
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
 
 // Write password to the #password input
 function writePassword() {
@@ -66,4 +74,19 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-passGen();
+// generatePassword();
+
+function getRandomChars(passRandom, passLength){
+  var string1 = ""
+
+  for(var i = 0; i < passLength; i++){
+    string1 += passRandom[Math.floor(Math.random() * passRandom.length)]
+    
+  }
+  
+  passRandom = string1;
+  
+  return passRandom;
+  
+};
+
