@@ -81,7 +81,12 @@ function getRandomChars(passRandom, passLength){
 
   for(var i = 0; i < passLength; i++){
     string1 += passRandom[Math.floor(Math.random() * passRandom.length)]
-    
+
+    /*Add an If statement to check if special characters were selected.
+    If special characters were selected but are not present
+    after running through Math.random run Math.random again until this equals true*/
+
+
   }
   
   passRandom = string1;
