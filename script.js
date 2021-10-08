@@ -3,14 +3,15 @@ var charAlphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var charAlphaLow = "abcdefghijklmnopqrstuvwxyz"
 var charNumeric = "1234567890"
 var charSpecial = "!@#$%^&*()"
+
+var shortPassword = ""
+
 // var passRandom = charAlphaLow + charAlphaUpp + charNumeric + charSpecial
-
-
 
 //Password user input questions
 var generatePassword = function(){
   
-  var passLength = window.prompt('How long would you like your password?');
+  var passLength = window.prompt('How long would you like your password?')
   
 
   passLength = parseInt(passLength);
@@ -19,7 +20,7 @@ var generatePassword = function(){
   //If passLength is less than 8
   //If passLength is greater than 128
 
-  while (passLength < 8 || passLength > 128){
+  while (passLength < 8 || passLength > 128 || isNaN(passLength)){
     passLength = window.prompt('It is recommended to use a password that is more than 8 characters Please reenter a value between 8 - 128')
    
     // generatePassword();
@@ -31,9 +32,9 @@ var generatePassword = function(){
 
     var passRandom = ""
 
-    if (userYesNo == 1){
-      passRandom += charNumeric
-    // getRandomChars(passRandom, passLength);
+if (userYesNo == 1){
+  passRandom += charNumeric
+  // getRandomChars(passRandom, passLength);
     
   }
 userYesNo = window.prompt("Do you want upper case letters? 1 for Yes 0 for No")
@@ -46,17 +47,28 @@ userYesNo = window.prompt("Do you want lower case letters? 1 for Yes 0 for No")
 
 if (userYesNo == 1){
   passRandom += charAlphaLow
+  
 }
+
 userYesNo = window.prompt("Do you want special letters? 1 for Yes 0 for No")
 
 if (userYesNo == 1){
-  passRandom += charSpecial
+  shortPassword = charSpecial[Math.floor(Math.random()* charSpecial.length)] 
+  passLength--;
+  passRandom+=charSpecial;
 }
 
-  return getRandomChars(passRandom, passLength)
-};
 
-//Else 0
+// if(shortPassword){
+
+
+  return (shortPassword + getRandomChars(passRandom,passLength));
+};
+  
+//     return getRandomChars(passRandom, passLength);
+  
+// };
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -77,7 +89,7 @@ generateBtn.addEventListener("click", writePassword);
 // generatePassword();
 
 function getRandomChars(passRandom, passLength){
-  var string1 = ""
+ var string1 = ""
 
   for(var i = 0; i < passLength; i++){
     string1 += passRandom[Math.floor(Math.random() * passRandom.length)]
@@ -86,9 +98,8 @@ function getRandomChars(passRandom, passLength){
     If special characters were selected but are not present
     after running through Math.random run Math.random again until this equals true*/
 
-
   }
-  
+
   passRandom = string1;
   
   return passRandom;
