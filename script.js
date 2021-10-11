@@ -3,14 +3,14 @@ var charAlphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var charAlphaLow = "abcdefghijklmnopqrstuvwxyz"
 var charNumeric = "1234567890"
 var charSpecial = "!@#$%^&*()"
-
+var userYesNo="";
 var shortPassword = ""
 
 // var passRandom = charAlphaLow + charAlphaUpp + charNumeric + charSpecial
 
 //Password user input questions
 var generatePassword = function(){
-  
+  shortPassword = "";
   var passLength = window.prompt('How long would you like your password?')
   
 
@@ -52,23 +52,17 @@ if (userYesNo == 1){
 
 userYesNo = window.prompt("Do you want special letters? 1 for Yes 0 for No")
 
+//Added short password symbol exception
+
 if (userYesNo == 1){
   shortPassword = charSpecial[Math.floor(Math.random()* charSpecial.length)] 
   passLength--;
   passRandom+=charSpecial;
 }
 
-
-// if(shortPassword){
-
-
   return (shortPassword + getRandomChars(passRandom,passLength));
+  
 };
-  
-//     return getRandomChars(passRandom, passLength);
-  
-// };
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -76,6 +70,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
