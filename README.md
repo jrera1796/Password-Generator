@@ -16,4 +16,4 @@ Made by Jose R.
 
 ### Jose Rivera 2021
 
-![Password Generator Screenshot](/assets/images/PWGen.png/?raw=true "Password Generator")
+![Password Generator Screenshot](/assets/images/PWGen.PNG/?raw=true "Password Generator")
